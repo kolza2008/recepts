@@ -15,6 +15,7 @@ def create_recept_table():
 def new_recept(name, data):
   return F"INSERT INTO recepts (name, inside) VALUES ('{name}', '{data}')"
 
-@disp.read
+
 def get_recept_by_id(id_):
- return f"SELECT * FROM recepts WHERE id={id_}"
+ cur.execute(F"SELECT * FROM recepts WHERE id={id_}") 
+ return cur.fetchone()

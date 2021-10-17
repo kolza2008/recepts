@@ -7,15 +7,26 @@ app = flask.Flask(__name__)
 def new_recept_by_url(url):
   return f"Added recepts by url {url}"
 
-@app.route('/api/new_recept/by_txt/<name>/<text>')
-def new_recept_by_text(text, name):
+@app.route('/api/new_recept/by_txt', methods=["POST"])
+def new_recept_by_text():
+  name = flask.request.form.get('name')
+  text = flask.request.form.get('text')
   db.new_recept(data=text, name=name)
   return f"Added recepts with name {name} and with inside {text}"
- 
-@app.route('/api/get_recept/<id_> ') 
-def get_recept(id_):
-  return db.get_recept_by_id(id_) 
+    
+@app.route('/api/new_recept/by_file')
+def new_recept_by_file():
+    return (403)
 
+
+@app.route('/get_recept/<uid>') 
+def get_recept(uid):
+  data = db.get_recept_by_id(uid)
+  return flask.render_template("recept.html", title=data[1], content=data[2]) 
+
+@app.route('/new_recept/text') 
+def form_new_text():
+    return flask.render_template("new_recept_by_text.html")
 
 
 db.disp.start()

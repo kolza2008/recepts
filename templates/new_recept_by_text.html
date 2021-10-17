@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<head>
+  <title>Новый рецепт</title>
+</head>
+<body>
+  <h3>{{title}}</h3>
+  <form method="post" action="/api/new_recept/by_txt">
+      <p>
+          <label for="name">Название рецепта:</label>
+          <input type="text" name="name">
+      </p>
+      <p>
+          <label for="text">Содержание рецепта: </label>
+          <textarea name="text"></textarea>
+      </p>
+      <input type="submit">
+  </body>
