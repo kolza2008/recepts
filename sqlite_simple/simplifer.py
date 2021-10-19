@@ -14,6 +14,7 @@ class AdvancedDispatcher:
             data = func(**args)
             self.cur.execute(data)
             self.conn.commit()
+            return self.cur.lastrowid
         return db_function
 
     def read(self, is_all=True):
